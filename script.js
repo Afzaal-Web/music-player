@@ -177,7 +177,37 @@ const pauseSong = (id) => {
 pauseButton.addEventListener('click', pauseSong);
 
 const  getCurrentSongIndex = () =>{
-
+return userData?.songs.indexOf(userData?.currentSong);
 }
 
-// Step 51 
+
+const playNextSong = () =>{
+    if(userData?.currentSong === null){
+        playSong(userData?.songs[0].id);
+    }
+    else{
+        const currentSongIndex = getCurrentSongIndex();
+        const nextSong = userData?.songs[currentSongIndex + 1];
+        playSong(nextSong.id);
+    }
+}
+nextButton.addEventListener('click', playNextSong);
+
+const playPreviousSong  = () =>{
+    if(userData?.currentSong === null){
+       return
+    }
+    else{
+        const currentSongIndex = getCurrentSongIndex();
+        const previousSong = userData?.songs[currentSongIndex - 1];
+        playSong(previousSong.id);
+    }
+}
+previousButton.addEventListener('click', playPreviousSong);
+
+const highlightCurrentSong  = () => {
+    const playlistSongElements  = document.querySelectorAll('.playlist-song');
+    const songToHighlight = document.getElementById(`song-${userData?.currentSong?.id}`);
+};
+
+// step 63
